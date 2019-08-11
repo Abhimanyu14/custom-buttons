@@ -1,19 +1,18 @@
-package com.appz.abhi.simplebuttons
+package com.appz.abhi.simplebutton
 
 import android.content.Context
-import android.graphics.Canvas
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
 import android.util.Log
 import android.view.MotionEvent
 import android.widget.Button
+import androidx.core.content.ContextCompat
 
 class SimpleButton : Button {
 
 
     private var buttonWidth = 0
     private var buttonHeight = 0
-    private var buttonCornerRadius = 0F
 
     private var buttonTextColor = 0
     private var buttonBackgroundColor = 0
@@ -25,9 +24,8 @@ class SimpleButton : Button {
 
     private lateinit var gradientDrawable: GradientDrawable
 
-    private var drawnFlag = false
 
-
+    // Constructor
     constructor(context: Context) : super(context)
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
@@ -42,6 +40,7 @@ class SimpleButton : Button {
     }
 
 
+    // Initialization block
     private fun init(context: Context, attrs: AttributeSet) {
 
         if (isInEditMode) {
@@ -52,22 +51,22 @@ class SimpleButton : Button {
 
         buttonTextColor = typedArray.getColor(
             R.styleable.SimpleButton_button_text_color,
-            resources.getColor(R.color.default_text_color)
+            ContextCompat.getColor(context, R.color.default_text_color)
         )
 
         buttonBackgroundColor = typedArray.getColor(
             R.styleable.SimpleButton_button_background_color,
-            resources.getColor(R.color.default_background_color)
+            ContextCompat.getColor(context, R.color.default_background_color)
         )
 
         buttonPressedColor = typedArray.getColor(
             R.styleable.SimpleButton_button_pressed_color,
-            resources.getColor(R.color.default_pressed_color)
+            ContextCompat.getColor(context, R.color.default_pressed_color)
         )
 
         buttonBorderColor = typedArray.getColor(
             R.styleable.SimpleButton_button_border_color,
-            resources.getColor(R.color.default_border_color)
+            ContextCompat.getColor(context, R.color.default_border_color)
         )
 
         buttonType = typedArray.getInt(R.styleable.SimpleButton_button_type, 0)
@@ -86,10 +85,6 @@ class SimpleButton : Button {
         this.isAllCaps = false
 
         this.setTextColor(buttonTextColor)
-        this.setBackgroundResource(R.drawable.rectangle)
-        gradientDrawable = this.background as GradientDrawable
-
-        updateButton(false)
     }
 
 
@@ -100,64 +95,39 @@ class SimpleButton : Button {
 
         buttonWidth = width
         buttonHeight = height
+
+        createDrawable()
+
+        this.background = gradientDrawable
     }
 
+    private fun createDrawable() {
 
-    override fun onDraw(canvas: Canvas) {
-        super.onDraw(canvas)
-
-        if (drawnFlag) {
-            return
-        }
-
-        Log.e("Library", "On draw")
+        gradientDrawable = GradientDrawable()
+        gradientDrawable.shape = GradientDrawable.RECTANGLE
 
         when (buttonShape) {
 
             // Rectangle
             0 -> {
-                buttonCornerRadius = 0F
+                gradientDrawable.cornerRadius = 0F
             }
 
             // Curved
             1 -> {
-                buttonCornerRadius = buttonHeight.toFloat() / 2
+                gradientDrawable.cornerRadius = buttonHeight.toFloat() / 2
             }
 
             // Fillet
             2 -> {
-                buttonCornerRadius = 8F
+                gradientDrawable.cornerRadius = 8F
             }
         }
 
-        gradientDrawable.cornerRadius = buttonCornerRadius
-
-        drawnFlag = true
+        updateButtonColor()
     }
 
-
-    override fun onTouchEvent(event: MotionEvent): Boolean {
-
-        when (event.action) {
-
-            MotionEvent.ACTION_DOWN -> {
-                Log.e("Library", "On down")
-
-                updateButton(true)
-            }
-
-            MotionEvent.ACTION_UP -> {
-                Log.e("Library", "On up")
-
-                updateButton(false)
-            }
-        }
-
-        return super.onTouchEvent(event)
-    }
-
-
-    private fun updateButton(pressed: Boolean) {
+    private fun updateButtonColor(pressed: Boolean = false) {
 
         when (buttonType) {
 
@@ -166,7 +136,6 @@ class SimpleButton : Button {
 
                 if (pressed) {
                     gradientDrawable.setColor(buttonPressedColor)
-
                 } else {
                     gradientDrawable.setColor(buttonBackgroundColor)
                 }
@@ -175,15 +144,43 @@ class SimpleButton : Button {
             // Outline
             1 -> {
 
-                gradientDrawable.setColor(resources.getColor(R.color.transparent))
-
+                gradientDrawable.setColor(ContextCompat.getColor(context,R.color.transparent))
                 if (pressed) {
                     gradientDrawable.setStroke(3, buttonPressedColor)
-
                 } else {
                     gradientDrawable.setStroke(3, buttonBackgroundColor)
                 }
             }
         }
+    }
+
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+        super.onTouchEvent(event)
+
+        when (event.action) {
+
+            MotionEvent.ACTION_DOWN -> {
+                Log.e("Library", "On down")
+
+                updateButtonColor(true)
+
+                return true
+            }
+
+            MotionEvent.ACTION_UP -> {
+                Log.e("Library", "On up")
+
+                updateButtonColor()
+
+                performClick()
+                return true
+            }
+        }
+
+        return false
+    }
+
+    override fun performClick(): Boolean {
+        return super.performClick()
     }
 }
