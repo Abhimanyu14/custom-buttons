@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/main_activity_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.appz.abhi.simplebuttons.SimpleButton
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="16dp"
+            android:padding="16dp"
+            android:text="Solid Rectangle Button"
+            app:button_background_color="@android:color/holo_red_light"
+            app:button_pressed_color="@android:color/holo_red_dark"
+            app:button_shape="rectangle"
+            app:button_text_color="@color/white"
+            app:button_type="solid"
+            tools:ignore="HardcodedText" />
+
+        <com.appz.abhi.simplebuttons.SimpleButton
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="16dp"
+            android:padding="16dp"
+            android:text="Solid Curved Button"
+            app:button_background_color="@android:color/holo_red_light"
+            app:button_pressed_color="@android:color/holo_red_dark"
+            app:button_shape="curved"
+            app:button_text_color="@color/white"
+            app:button_type="solid"
+            tools:ignore="HardcodedText" />
+
+        <com.appz.abhi.simplebuttons.SimpleButton
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="16dp"
+            android:padding="16dp"
+            android:text="Solid Fillet Button"
+            app:button_background_color="@android:color/holo_red_light"
+            app:button_pressed_color="@android:color/holo_red_dark"
+            app:button_shape="fillet"
+            app:button_text_color="@color/white"
+            app:button_type="solid"
+            tools:ignore="HardcodedText" />
+
+        <com.appz.abhi.simplebuttons.SimpleButton
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="16dp"
+            android:padding="16dp"
+            android:text="Outline Rectangle Button"
+            app:button_background_color="@android:color/holo_orange_light"
+            app:button_pressed_color="@android:color/holo_orange_dark"
+            app:button_shape="rectangle"
+            app:button_text_color="@color/holo_orange_dark"
+            app:button_type="outline"
+            tools:ignore="HardcodedText" />
+
+        <com.appz.abhi.simplebuttons.SimpleButton
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="16dp"
+            android:padding="16dp"
+            android:text="Outline Curved Button"
+            app:button_background_color="@android:color/holo_orange_light"
+            app:button_pressed_color="@android:color/holo_orange_dark"
+            app:button_shape="curved"
+            app:button_text_color="@color/holo_orange_dark"
+            app:button_type="outline"
+            tools:ignore="HardcodedText" />
+
+        <com.appz.abhi.simplebuttons.SimpleButton
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="16dp"
+            android:padding="16dp"
+            android:text="Outline Fillet Button"
+            app:button_background_color="@android:color/holo_orange_light"
+            app:button_pressed_color="@android:color/holo_orange_dark"
+            app:button_shape="fillet"
+            app:button_text_color="@color/holo_orange_dark"
+            app:button_type="outline"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
+
+</layout>

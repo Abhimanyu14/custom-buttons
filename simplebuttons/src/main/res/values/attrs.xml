@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="SimpleButton">
+
+        <attr name="button_text_color" format="color" />
+
+        <attr name="button_background_color" format="color" />
+        <attr name="button_pressed_color" format="color" />
+        <attr name="button_border_color" format="color" />
+
+        <attr name="button_type" format="enum">
+            <enum name="solid" value="0" />
+            <enum name="outline" value="1" />
+        </attr>
+
+        <attr name="button_shape" format="enum">
+            <enum name="rectangle" value="0" />
+            <enum name="curved" value="1" />
+            <enum name="fillet" value="2" />
+        </attr>
+
+        <attr name="button_state" format="boolean" />
+
+    </declare-styleable>
+
+</resources>
