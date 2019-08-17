@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-android'
 
+group = 'com.github.Abhimanyu14'
+
 android {
 
     compileSdkVersion 29
